@@ -1,0 +1,14 @@
+/* line 1, ../scss/keyword.scss */
+.keyword {
+  font-family: 'Lato', Sans-serif;
+  padding: 5px 11px;
+  font-size: 12px;
+  line-height: 29px;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #bdc3c7;
+}
+/* line 10, ../scss/keyword.scss */
+.keyword:hover {
+  background-color: #7f8c8d;
+}

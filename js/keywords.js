@@ -1,10 +1,9 @@
 /*
 *	Keyword framework 
-*	for simple uses
-*	@ Markus Waltre 2014
+*	Markus Waltre @ 2014
+*	markuswaltre.com
 */
 
-//function keywords (keywords, idName) {
 function keywords () {
 	// keyword array
     this.keywords = new Array();
@@ -15,24 +14,6 @@ function keywords () {
     this.spanName = 'keyword';
     this.idName = 'keywords';
 
-    // check input parameter (this does not work)
-    
-	// if(idName===undefined) {
-	// 	/* no idName parameter in call */ 
-	// }
-	// else if(typeof(idName) === 'string') {
-	// 	this.idName = idName;
-	// }
-	// if(keywords===undefined) {
-	// 	no keywords parameter in call  
-	// }
-	// else if(keywords instanceof Array) {
-	// 	this.setKeywords(keywords);
-	// } else if(typeof(keywords) === 'string') {
-	// 	this.addKeyword(keywords);
-	// }
-
-
     // functions for setting options
     this.setTitleCase = function(bool) {
     	if(bool === true || bool === false) {
@@ -40,9 +21,9 @@ function keywords () {
     	}
     };
     this.setClickable = function(bool) {
-    	console.log(bool);
     	if(bool === true || bool === false) {
     		this.clickable = bool;
+    		this.drawKeywords();
     	}
     };
     this.setIdName = function(idName) {
@@ -61,19 +42,17 @@ function keywords () {
 		
 		// reset the listener for keyword clicks
 		if(this.clickable) {
-			// to be able to use self-reference
-			// inside jquery $(this)
 			var self = this;
 
 			$('.' + this.spanName).off('click.' + this.spanName);
 			$('.' + this.spanName).on('click.' + this.spanName, function (e) {
-					self.deleteKeyword($(this).html());
-				    self.drawKeywords();
+				self.deleteKeyword($(this).html());
+			    self.drawKeywords();
 			});
 		}
     };
 
-    // add / delelete and set an array
+    // add & delete and set an array
     this.addKeyword = function(input) {
     	input = $.trim(input); // delete whites
 		if(this.titleCase) {
@@ -84,28 +63,34 @@ function keywords () {
 			this.drawKeywords();
 		}
     };
+    this.addKeywords = function(arr_input) {
+    	for(var i=0; i<arr_input.length; i++) {
+    		this.addKeyword(arr_input[i]);
+    	}
+    };
     this.deleteKeyword = function(value) {
     	if(this.keywords.indexOf(value) != -1) { // Make sure the value exists
 	        this.keywords.splice(this.keywords.indexOf(value), 1);
 	    } 
     };
-    this.setKeywords = function(keywords_input) {
+    this.setKeywords = function(arr_input) {
     	if(this.titleCase) {
-    		keywords_input = this.toTitleCaseArray(keywords_input);
+    		arr_input = this.toTitleCaseArray(arr_input);
     	}
-        // does this really clear the array?
+        // clear array
 		this.keywords.length = 0;
-		for(var i=0; i<keywords_input.length; i++) {
-			this.keywords.push(keywords_input[i]);
+		for(var i=0; i<arr_input.length; i++) {
+			this.keywords.push(arr_input[i]);
 		}
 		this.drawKeywords();
     };
 
-
-
-    // return keyword array
+    // return keyword array & length
     this.getKeywords = function() {
     	return this.keywords;
+    };
+    this.getSize = function() {
+    	return this.keywords.length;
     };
 
     // help functions
@@ -116,28 +101,7 @@ function keywords () {
 
 		return arr;
     };
-    this.toTitleCase = function(keyword) {
-    	return keyword.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    this.toTitleCase = function(word) {
+    	return word.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
 };
-
-// testing
-
-var p = new keywords();
-p.setTitleCase(false);
-p.setKeywords(["aaSa", "aa b", "AAH bbb AA", "hello", "you"]);
-
-var l = new keywords();
-l.setIdName("extra");
-l.setClickable(false);
-l.setKeywords(["adsadsadsadasdas", "adsa", "asd"]);
-
-//var r = new keywords(["hey", "dude"], "parameter");
-
-// debugging
-
-$("#test").submit(function (event) {
-	event.preventDefault();
-	p.addKeyword($("#text").val());
-	$("#text").val("");
-});
