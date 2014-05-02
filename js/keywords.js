@@ -7,6 +7,7 @@
 function keywords () {
 	// keyword array
     this.keywords = new Array();
+	var self = this;
 
     // options
     this.titleCase = true;
@@ -42,9 +43,7 @@ function keywords () {
 		
 		// reset the listener for keyword clicks
 		if(this.clickable) {
-			var self = this;
-
-			$('.' + this.spanName).off('click.' + this.spanName);
+			// doesnt work atm document.body.addEventListener('click', this.eventHandler, false);
 			$('.' + this.spanName).on('click.' + this.spanName, function (e) {
 				self.deleteKeyword($(this).html());
 			    self.drawKeywords();
@@ -104,4 +103,15 @@ function keywords () {
     this.toTitleCase = function(word) {
     	return word.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
+
+    /* doesn't work. only finds div outside.. 
+	this.eventHandler= function(e) {
+		e = e || window.event;
+	    var target = e.target || e.srcElement;
+	    if (target.className.match(/keyword/))
+	    {
+	    	var t_str = target.innerHTML;
+	    	self.deleteKeyword(t_str);
+	    }
+	}; */
 };
