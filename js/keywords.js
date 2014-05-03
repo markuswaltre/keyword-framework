@@ -39,16 +39,12 @@ function keywords () {
 			t_str +=  "<span class=" + this.spanName + ">" + this.keywords[i] + "</span> ";
 		}
 		// appends to the div given by idName
-		//$('#' + this.idName).html(t_str);
         document.getElementById(this.idName).innerHTML = t_str;
 		
 		// reset the listener for keyword clicks
+        document.body.removeEventListener('click', this.eventHandler, false);
 		if(this.clickable) {
-			// doesnt work atm document.body.addEventListener('click', this.eventHandler, false);
-			$('.' + this.spanName).on('click.' + this.spanName, function (e) {
-				self.deleteKeyword($(this).html());
-			    self.drawKeywords();
-			});
+            document.body.addEventListener('click', this.eventHandler, false);
 		}
     };
 
@@ -74,6 +70,7 @@ function keywords () {
         }
     	if(this.keywords.indexOf(value) != -1) { // Make sure the value exists
 	        this.keywords.splice(this.keywords.indexOf(value), 1);
+            this.drawKeywords();
 	    } 
     };
     this.setKeywords = function(arr_input) {
@@ -108,7 +105,7 @@ function keywords () {
     	return word.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
 
-    /* doesn't work. only finds div outside.. 
+    // eventhandler
 	this.eventHandler= function(e) {
 		e = e || window.event;
 	    var target = e.target || e.srcElement;
@@ -117,5 +114,5 @@ function keywords () {
 	    	var t_str = target.innerHTML;
 	    	self.deleteKeyword(t_str);
 	    }
-	}; */
+	}; 
 };
