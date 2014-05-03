@@ -3,8 +3,6 @@ Keyword framework
 
 I built this framework since I found it unnecessary to use a large framework such as foundation or bootstrap if you only needed the extra keyword tagging features. The object handling the keyword is pretty straight forward and shouldn't be difficult to edit to your needs for more features.
 
-This build depends on jQuery, working on removing it!
-
 ## Setup
 
 You need to add `keyword.js` and `keyword.css` to your document.
