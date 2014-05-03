@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Keyword-framework by markuswaltre</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Keyword-framework</h1>
+        <p>Fast lightweight javascript framework for working with keywords</p>
+
+        <p class="view"><a href="https://github.com/markuswaltre/keyword-framework">View the Project on GitHub <small>markuswaltre/keyword-framework</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/markuswaltre/keyword-framework/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/markuswaltre/keyword-framework/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/markuswaltre/keyword-framework">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="keyword-framework" class="anchor" href="#keyword-framework"><span class="octicon octicon-link"></span></a>Keyword framework</h1>
+
+<p>I built this framework since I found it unnecessary to use a large framework such as foundation or bootstrap if you only needed the extra keyword tagging features. The object handling the keyword is pretty straight forward and shouldn't be difficult to edit to your needs for more features.</p>
+
+<p>This build depends on jQuery, working on removing it!</p>
+
+<h2>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>You need to add <code>keyword.js</code> and <code>keyword.css</code> to your document.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"css/keyword.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/keywords.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<h2>
+<a name="create-keywords" class="anchor" href="#create-keywords"><span class="octicon octicon-link"></span></a>Create keywords</h2>
+
+<p>First off you need to create your div in your html document so we have something to append our keywords upon.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"keywords"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>The framework works by appending <code>span</code> of a keyword inside a <code>div</code> Id. (default div #id is <code>keywords</code>)</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">keywords</span><span class="p">();</span>
+<span class="nx">k</span><span class="p">.</span><span class="nx">setKeywords</span><span class="p">([</span><span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"Eggs"</span><span class="p">,</span> <span class="s2">"ham"</span><span class="p">,</span> <span class="s2">"potato"</span><span class="p">,</span> <span class="s2">"french fries"</span><span class="p">]);</span>
+</pre></div>
+
+<p>And this will give us</p>
+
+<p><img src="https://raw.githubusercontent.com/markuswaltre/keyword-framework/master/images/demo.png" alt="Image not found" title="Example of keywords"></p>
+
+<p>Notice that the keywords are capitalized, if you don't want this you can simply turn it off</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">keywords</span><span class="p">();</span>
+<span class="nx">k</span><span class="p">.</span><span class="nx">setTitleCase</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="nx">k</span><span class="p">.</span><span class="nx">setKeywords</span><span class="p">([</span><span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"Eggs"</span><span class="p">,</span> <span class="s2">"ham"</span><span class="p">,</span> <span class="s2">"potato"</span><span class="p">,</span> <span class="s2">"french fries"</span><span class="p">]);</span>
+</pre></div>
+
+<p>If you need to append to a specific div, not the default one, you use <code>setIdName</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">keywords</span><span class="p">();</span>
+<span class="nx">k</span><span class="p">.</span><span class="nx">setIdName</span><span class="p">(</span><span class="s2">"otherdivid"</span><span class="p">);</span>
+<span class="nx">k</span><span class="p">.</span><span class="nx">setKeywords</span><span class="p">([</span><span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"Eggs"</span><span class="p">,</span> <span class="s2">"ham"</span><span class="p">,</span> <span class="s2">"potato"</span><span class="p">,</span> <span class="s2">"french fries"</span><span class="p">]);</span>
+</pre></div>
+
+<h2>
+<a name="other-options" class="anchor" href="#other-options"><span class="octicon octicon-link"></span></a>Other options</h2>
+
+<p>All keywords are by default clickable and will result in deleting upon clicked. You can turn this off by</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">setClickable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</pre></div>
+
+<p>Append an extra keyword</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">addKeyword</span><span class="p">(</span><span class="s2">"Hamburger"</span><span class="p">);</span>
+</pre></div>
+
+<p>Append multiple extra keywords </p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">addKeywords</span><span class="p">([</span><span class="s2">"Flour"</span><span class="p">,</span> <span class="s2">"Pizza"</span><span class="p">,</span> <span class="s2">"Wine"</span><span class="p">]);</span>
+</pre></div>
+
+<p>Delete a specific keyword</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">deleteKeyword</span><span class="p">(</span><span class="s2">"Pizza"</span><span class="p">);</span> <span class="c1">// who would delete pizza?</span>
+</pre></div>
+
+<p>Retrieve array of keywords</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">getKeywords</span><span class="p">();</span>
+</pre></div>
+
+<p>Retrieve length of array of keywords</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">k</span><span class="p">.</span><span class="nx">getSize</span><span class="p">();</span>
+</pre></div>
+
+<h2>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
+
+<p>Hopefully you find this tool useful!
+Any questions, comments or suggestions just ask!</p>
+
+<p>Thank you!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/markuswaltre">markuswaltre</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("&lt;script&gt;   (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)   })(window,document,&#39;script&#39;,&#39;//www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);    ga(&#39;create&#39;, &#39;UA-27510664-5&#39;, &#39;markuswaltre.github.io&#39;);   ga(&#39;send&#39;, &#39;pageview&#39;);  &lt;/script&gt;");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
