@@ -1,0 +1,39 @@
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Keyword framework</title>
+	    <meta name="description" content="Keyword framework">
+	    <meta name="author" content="Markus Waltre">
+	    <meta name="copyright" content="Go for it">
+
+      <link rel="stylesheet" href="stylesheet.css">
+      <link rel="stylesheet" href="../css/keyword.css">
+  	</head>
+<body>
+  <div id="content">
+    <br>
+    <h1>Keywords</h1>
+
+    <h3>1. Clickable, default divid, capitalized</h3>
+    <div id="keywords"></div>
+
+    <h3>2. Not clickable, custom divid, capitalized</h3>
+    <div id="carbrands"></div>
+
+    <h3>3. Clickable, custom divid, not capitalized</h3>
+    <div id="parameters"></div>
+
+    <h3>4. Append keywords (to 1) </h3>
+    <!-- form for appending tags to #keywords div -->
+    <form id="test" name="test">
+      <input id="text" name="text" type="text" />
+      <input type="submit" />
+    </form>
+  </div>
+
+  <!-- only added for the form -->
+  <script src="jquery-2.0.3.js"></script>
+  <script src="../js/keywords.js"></script>
+  <script src="testing.js"></script>
+</body>
