@@ -39,7 +39,8 @@ function keywords () {
 			t_str +=  "<span class=" + this.spanName + ">" + this.keywords[i] + "</span> ";
 		}
 		// appends to the div given by idName
-		$('#' + this.idName).html(t_str);
+		//$('#' + this.idName).html(t_str);
+        document.getElementById(this.idName).innerHTML = t_str;
 		
 		// reset the listener for keyword clicks
 		if(this.clickable) {
