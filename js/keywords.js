@@ -68,6 +68,9 @@ function keywords () {
     	}
     };
     this.deleteKeyword = function(value) {
+        if(this.titleCase) {
+            value = this.toTitleCase(value);
+        }
     	if(this.keywords.indexOf(value) != -1) { // Make sure the value exists
 	        this.keywords.splice(this.keywords.indexOf(value), 1);
 	    } 
